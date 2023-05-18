@@ -1,0 +1,9 @@
+Task #1
+1. Create a HTML form 
+2.  First Name(only letters should be there no number or special character should be entered ) Required
+3. Last Name(only letters should be there no number or special character should be entered ) Required
+4.  Phone Number(only number should be there no letter or special character should be entered, only 10 numbers not more than that) Required
+5.  (only letters should be there no number or special character should be entered )
+6.   disablity: yes no, radio button group 
+7.   permanent address same as local address if check box is selected   
+8.    image upload File Upload : allowed extensions - docs,jpg,pdf,png
