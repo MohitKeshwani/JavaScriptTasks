@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Basic Form</title>
+</head>
+<body>
+
+  <form onsubmit="return validateForm()">
+    <label for="name">First Name:</label>
+    <input type="text" id="first-name" name="first-name" required><span id="fname-error" ></span><br><br>
+    
+    <label for="last-name">Last Name:</label>
+    <input type="text" id="last-name" name="last-name" required><span id="lname-error" ></span><br><br>
+
+    <label for="phone-number">Phone Number:</label>
+    <input type="phone" id="phone-number" name="phone-number" required><span id="phone-error" ></span><br><br>
+
+    <label for="Disability">Disablity</label>
+    <input type="radio" id="Ydis" name="Disability" value="Yes">
+    <label for="male">Yes</label>
+    <input type="radio" id="Ndis" name="Disability" value="NO">
+    <label for="female">NO</label><span id="dis-error" ></span><br><br>
+    
+
+
+    <label for="local-address">Local Address:</label>
+    <textarea id="local-address" name="local-address"></textarea><span id="LocalAdress-error" ></span><br><br>
+
+    <label for="Same">Same as local address:</label>
+    <input type="checkbox" id="terms" name="terms"><br><br>
+
+    <label for="current-address">Current Address:</label>
+    <textarea id="current-address" name="current-address"></textarea><br><br>
+
+    <label for="profile-image">Profile Image:</label>
+    <input type="file" id="profile-image" name="profile-image"><span id="image-error" ></span><br><br>
+
+    <input type="submit" value="Submit">
+  </form>
+  <script> 
+    function validateForm() { 
+       
+       const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+       const hasNumber = /\d/;
+       var flag = 0;
+       var fname = document.getElementById("first-name").value;
+       var lname = document.getElementById("last-name").value;
+       var phone = document.getElementById("phone-number").value;
+       var localAdress = document.getElementById("local-address").value;
+       var filename = document.getElementById("profile-image").value;
+       var validExtensions = ["jpg", "jpeg", "png"];
+       var sameCheckBox = document.getElementById("terms").value;
+       //var patternFileExtension = /\.([0-9a-z]+)(?:[\?#]|$)/i;
+
+       //Get the file Extension 
+        
+
+      if(sameCheckBox) {
+          document.getElementById("current-address").value = localAdress;
+      }
+
+       if(specialChars.test(fname) || hasNumber.test(fname)) {
+          document.getElementById("fname-error").innerHTML = 'First Name Can Not have special Characters or Numbers';
+          flag = flag + 1;
+       }
+       if(specialChars.test(lname) || hasNumber.test(lname)) {
+          document.getElementById("lname-error").innerHTML = 'Last Name Can Not have special Characters or Numbers';
+          flag = flag + 1;
+       }
+       if(isNaN(phone) || !(phone.length == 10)) {
+          document.getElementById("phone-error").innerHTML = 'Phone Number must have only numbers and must be 10 digits long';
+          flag = flag + 1;
+       }
+       if(specialChars.test(localAdress) || hasNumber.test(localAdress)) {
+          document.getElementById("LocalAdress-error").innerHTML = 'Local Adress Can Not have special Characters or Numbers';
+          flag = flag + 1;
+       }
+       if(!(filename === "")) {
+          let fileExtension = filename.split(".");
+
+          if(!validExtensions.includes(fileExtension[1])) {
+              document.getElementById("image-error").innerHTML = 'File must be of jpg, jpeg or png extensions';
+              flag =flag +1;
+          }
+       }
+
+
+
+
+       if(flag > 0) {
+          return false
+       }
+
+       return true;
+    } 
+
+
+    
+ </script>
+</body>
+</html>
